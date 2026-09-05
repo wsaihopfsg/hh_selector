@@ -125,8 +125,6 @@
             border-bottom: 2px solid #bdc3c7;
             padding-bottom: 20px;
         }
-        
-        /* Updated Result Layout Styles */
         .result-container {
             display: flex;
             flex-direction: column;
@@ -145,22 +143,22 @@
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            box-sizing: border-box; /* Ensures padding does not cause overflow */
+            box-sizing: border-box;
         }
         .product-image-wrapper img {
             width: 100%;
             height: auto;
             border-radius: 6px;
-            display: block; /* Removes bottom spacing below images */
+            display: block; 
         }
         .recommendation {
             flex: 1;
-            min-width: 0; /* Prevents text from forcing the flex container wider */
+            min-width: 0; 
             font-size: 16px;
             line-height: 1.6;
         }
         .recommendation p:first-child {
-            margin-top: 0; /* Aligns top of text with top of image */
+            margin-top: 0; 
         }
     </style>
 </head>
@@ -209,6 +207,14 @@
             </div>
 
             <div class="form-group">
+                <label for="motion-detection">Motion Detection / Hands-Free</label>
+                <select id="motion-detection">
+                    <option value="NIL">NIL (Not Specified)</option>
+                    <option value="Required (Stationary presentation scanning in charging base)">Required (Stationary presentation scanning in charging base)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="data-processing">Data Processing Needs</label>
                 <select id="data-processing">
                     <option value="NIL">NIL (Not Specified)</option>
@@ -232,12 +238,10 @@
             <h3>AI Recommendation</h3>
             
             <div class="result-container">
-                <!-- Picture Placeholder -->
                 <div class="product-image-wrapper" id="image-wrapper">
                     <img id="product-img" src="" alt="Recommended Scanner">
                 </div>
                 
-                <!-- Recommendation Text -->
                 <div id="recommendation" class="recommendation"></div>
             </div>
         </div>
@@ -258,6 +262,7 @@
                 distance: document.getElementById('distance').value,
                 environment: document.getElementById('environment').value,
                 formFactor: formFactorVal,
+                motionDetection: document.getElementById('motion-detection').value,
                 dataProcessing: document.getElementById('data-processing').value,
                 priceRange: document.getElementById('price-range').value
             };
@@ -282,18 +287,16 @@
                     throw new Error(data.error || `HTTP error! status: ${response.status}`);
                 }
                 
-				if (data.recommendation) {
+                if (data.recommendation) {
                     document.getElementById('recommendation').innerHTML = data.recommendation;
                     
                     const aiText = data.recommendation.toLowerCase();
                     let imageUrl = "";
 
-                    // Find where each scanner is first mentioned
                     const indexOHV = aiText.indexOf("ohv210");
                     const indexCR = aiText.indexOf("cr2700");
                     const indexIdent = aiText.indexOf("ident-r");
                     
-                    // Determine the lowest valid index for OHV210
                     let firstOHV = Math.min(
                         indexOHV !== -1 ? indexOHV : Infinity, 
                         indexCR !== -1 ? indexCR : Infinity
@@ -301,7 +304,6 @@
                     
                     let firstIdent = indexIdent !== -1 ? indexIdent : Infinity;
 
-                    // Compare which scanner was mentioned first
                     if (firstOHV !== Infinity && firstOHV < firstIdent) {
                         imageUrl = "https://wsaihopfsg.github.io/hh_selector/OHV210.png";
                         
