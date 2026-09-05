@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handheld Scanner AI Recommender</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        p.intro {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+        }
+        .prompt-wrapper {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        textarea {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ccd1d9;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            resize: vertical;
+            min-height: 80px;
+        }
+        textarea:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            background-color: #fff;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd1d9;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background-color: #fafafa;
+        }
+        .ask-ai-btn {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.3;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .ask-ai-btn:hover {
+            background-color: #3498db;
+            transform: translateY(-1px);
+        }
+        .ask-ai-btn:active {
+            transform: translateY(1px);
+        }
+        .ask-ai-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .output-section {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #ecf0f1;
+            border-left: 6px solid #27ae60;
+            border-radius: 6px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .output-section h3 {
+            margin-top: 0;
+            color: #27ae60;
+            border-bottom: 2px solid #bdc3c7;
+            padding-bottom: 20px;
+        }
+        
+        /* Updated Result Layout Styles */
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        @media(min-width: 768px) {
+            .result-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+        .product-image-wrapper {
+            flex: 0 0 260px;
+            display: none;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-sizing: border-box; /* Ensures padding does not cause overflow */
+        }
+        .product-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            display: block; /* Removes bottom spacing below images */
+        }
+        .recommendation {
+            flex: 1;
+            min-width: 0; /* Prevents text from forcing the flex container wider */
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .recommendation p:first-child {
+            margin-top: 0; /* Aligns top of text with top of image */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Barcode Scanner AI Recommender</h1>
+        <p class="intro">Describe your operational needs and define key metrics. Our AI will analyze your inputs to recommend the best fit: <strong>OHV210</strong>, <strong>Ident-R 02 FlexRange</strong>, or <strong>Ident-R 02 Long Range</strong>.</p>
+        
+        <div class="form-group">
+            <label for="user-prompt">Workflow & Use Case Description (Optional/Free-text):</label>
+            <div class="prompt-wrapper">
+                <textarea id="user-prompt" rows="3" placeholder="e.g., We need a scanner for our warehouse forklift drivers to scan pallets from a distance..."></textarea>
+                <button class="ask-ai-btn" id="ask-btn" onclick="generateRecommendation()">Ask<br>AI</button>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label for="distance">Scanning Distance / Barcode Size</label>
+                <select id="distance">
+                    <option value="NIL">NIL (Not Specified)</option>
+                    <option value="Close Range (< 300mm) / High Density (3 mil)">Close Range (< 300mm) / High Density (3 mil)</option>
+                    <option value="Medium Range (up to 7m) / Standard Barcodes">Medium Range (up to 7m) / Standard Barcodes</option>
+                    <option value="Long Range (up to 26m) / Large Barcodes (100 mil)">Long Range (up to 26m) / Large Barcodes (100 mil)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="environment">Environment & Hygiene</label>
+                <select id="environment">
+                    <option value="NIL">NIL (Not Specified)</option>
+                    <option value="Healthcare / Strict Infection Control (Chemical Washdown)">Healthcare / Strict Infection Control (Chemical Washdown)</option>
+                    <option value="Rugged Industrial (IP68)">Rugged Industrial (IP68)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="form-factor">Preferred Form Factor</label>
+                <select id="form-factor">
+                    <option value="NIL">NIL (Not Specified)</option>
+                    <option value="Standard Handheld">Standard Handheld</option>
+                    <option value="Pocket (Highly portable, no handle)">Pocket (Highly portable, no handle)</option>
+                    <option value="Smart Grip (Mount smartphone directly to scanner)">Smart Grip (Mount smartphone directly to scanner)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data-processing">Data Processing Needs</label>
+                <select id="data-processing">
+                    <option value="NIL">NIL (Not Specified)</option>
+                    <option value="Advanced Onboard Editing (JavaScript)">Advanced Onboard Editing (JavaScript)</option>
+                    <option value="Standard Formatting (EZConfig)">Standard Formatting (EZConfig)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="price-range">Price Range (SGD)</label>
+                <select id="price-range">
+                    <option value="NIL">NIL (Not Specified)</option>
+                    <option value="$1,000 - $1,500">$1,000 - $1,500</option>
+                    <option value="$1,500 - $2,000">$1,500 - $2,000</option>
+                    <option value="$2,000+">$2,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="output-section" class="output-section">
+            <h3>AI Recommendation</h3>
+            
+            <div class="result-container">
+                <!-- Picture Placeholder -->
+                <div class="product-image-wrapper" id="image-wrapper">
+                    <img id="product-img" src="" alt="Recommended Scanner">
+                </div>
+                
+                <!-- Recommendation Text -->
+                <div id="recommendation" class="recommendation"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function generateRecommendation() {
+            const askBtn = document.getElementById('ask-btn');
+            askBtn.innerHTML = '...';
+            askBtn.disabled = true;
+
+            const hardcodedGithubUrl = "https://raw.githubusercontent.com/wsaihopfsg/hh_selector/main/scanner_selection_guide.md";
+            const formFactorVal = document.getElementById('form-factor').value;
+
+            const payloadData = {
+                githubUrl: hardcodedGithubUrl,
+                userPrompt: document.getElementById('user-prompt').value || "No specific workflow provided.",
+                distance: document.getElementById('distance').value,
+                environment: document.getElementById('environment').value,
+                formFactor: formFactorVal,
+                dataProcessing: document.getElementById('data-processing').value,
+                priceRange: document.getElementById('price-range').value
+            };
+
+            document.getElementById('output-section').style.display = 'block';
+            document.getElementById('image-wrapper').style.display = 'none'; 
+            document.getElementById('recommendation').innerHTML = '<p><em>Consulting Gemini AI...</em></p>';
+
+            try {
+                // REPLACE THIS URL WITH YOUR ACTUAL CLOUDFLARE WORKER ROUTE
+                const response = await fetch('https://hh-selector.wsaiho.workers.dev/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payloadData)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || `HTTP error! status: ${response.status}`);
+                }
+                
+				if (data.recommendation) {
+                    document.getElementById('recommendation').innerHTML = data.recommendation;
+                    
+                    const aiText = data.recommendation.toLowerCase();
+                    let imageUrl = "";
+
+                    // Find where each scanner is first mentioned
+                    const indexOHV = aiText.indexOf("ohv210");
+                    const indexCR = aiText.indexOf("cr2700");
+                    const indexIdent = aiText.indexOf("ident-r");
+                    
+                    // Determine the lowest valid index for OHV210
+                    let firstOHV = Math.min(
+                        indexOHV !== -1 ? indexOHV : Infinity, 
+                        indexCR !== -1 ? indexCR : Infinity
+                    );
+                    
+                    let firstIdent = indexIdent !== -1 ? indexIdent : Infinity;
+
+                    // Compare which scanner was mentioned first
+                    if (firstOHV !== Infinity && firstOHV < firstIdent) {
+                        imageUrl = "https://wsaihopfsg.github.io/hh_selector/OHV210.png";
+                        
+                    } else if (firstIdent !== Infinity) {
+                        
+                        if (aiText.includes("smart grip") || formFactorVal.includes("Smart Grip")) {
+                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg";
+                        } else if (aiText.includes("pocket") || formFactorVal.includes("Pocket")) {
+                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/pocket.png";
+                        } else {
+                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/Grip.png";
+                        }
+                    }
+
+                    if (imageUrl !== "") {
+                        document.getElementById('product-img').src = imageUrl;
+                        document.getElementById('image-wrapper').style.display = 'block';
+                    }
+                }                
+            } catch (error) {
+                document.getElementById('recommendation').innerHTML = `<p style="color:red;">Backend Error: ${error.message}</p>`;
+            } finally {
+                askBtn.innerHTML = 'Ask<br>AI';
+                askBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
