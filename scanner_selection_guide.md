@@ -5,8 +5,10 @@ This document provides comprehensive technical specifications, feature compariso
 ## 1. Product Overviews
 
 ### OHV210 (OEM: Code Reader™ 2700 / CR2702)
-*   **Target Market:** Healthcare, clean-rooms, and environments requiring strict infection control.
-*   **Key Features:** Inductive charging (no exposed metal contacts), PVC-Free CodeShield® plastics designed to withstand harsh chemical disinfectants, JavaScript-based advanced data editing, Bluetooth 5.0 (BLE).
+*   **Target Market:** Healthcare, clean-rooms, picking processes, and environments requiring strict infection control or stationary scanning.
+*   **Key Features:** Inductive charging (no exposed metal contacts), PVC-Free CodeShield® plastics designed to withstand harsh chemical disinfectants, JavaScript-based advanced data editing, Bluetooth 5.0 (BLE), replaceable batteries with push-button charge status.
+*   **Wireless & Connectivity:** Records data and transmits wirelessly to the charging station via 2.4 GHz technology. Uses a Quick Connect code for simple pairing. Data automatically transfers from the station to a PC, smartphone, or tablet via USB.
+*   **Motion Detection & Stationary Use:** Automatically activates motion detection mode when plugged into the charging station, allowing users to pass packages under the reading window for hands-free presentation scanning. Removing the device from the station instantly reverts it to mobile reading mode.
 *   **Durability:** IP65 rating, withstands 1.8m drops to concrete.
 *   **Form Factor:** Standard handheld reader (177g including battery).
 *   **Price:** ~$2,070 SGD.
@@ -47,8 +49,9 @@ This document provides comprehensive technical specifications, feature compariso
 | :--- | :--- | :--- |
 | **IP Rating** | IP65 | IP68 |
 | **Bluetooth** | 5.0 (BLE, Class II) | 5.4 (Classic + BLE) |
-| **Fast Pairing** | QR Code on charger | NFC |
-| **Battery** | 1200 mAh (detachable) | 1430 mAh (Li-Ion) |
+| **Motion Detection** | Yes (Auto-activates in charging station) | N/A |
+| **Fast Pairing** | Quick Connect code | NFC |
+| **Battery** | 1200 mAh (detachable, push-button status) | 1430 mAh (Li-Ion) |
 | **Offline Storage** | 1MB | 256kB (Up to 2048 barcodes) |
 | **Operating Temp** | -20°C to 55°C | -20°C to 60°C |
 
@@ -69,5 +72,8 @@ When prompting the customer for requirements or making a recommendation, apply t
 *   **IF** the customer wants to attach a mobile device/smartphone directly to the scanner for an all-in-one terminal feel: **Recommend Ident-R 02 (Smart Grip).**
 *   **IF** the customer needs a highly portable, pocket-sized device without a handle: **Recommend Ident-R 02 (Pocket).**
 
-**Rule 4: Data Processing**
+**Rule 4: Motion Detection & Presentation Scanning**
+*   **IF** the customer requires hands-free scanning, motion detection, or a hybrid stationary/mobile workflow (e.g., picking processes where packages are held under the base station): **Recommend OHV210.**
+
+**Rule 5: Data Processing**
 *   **IF** the customer requires complex, onboard data parsing or editing via JavaScript before the barcode data reaches the host PC: **Recommend OHV210.**
