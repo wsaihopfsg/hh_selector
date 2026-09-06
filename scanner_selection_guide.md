@@ -12,6 +12,7 @@ This document provides comprehensive technical specifications, feature compariso
 *   **Durability:** IP65 rating, withstands 1.8m drops to concrete.
 *   **Form Factor:** Standard handheld reader (177g including battery).
 *   **Price:** ~$2,070 SGD.
+*   **Symbologies supported:** Codabar, Code 11, Code 32 / Coupon Code 32, Code 39, Code 93, Code 128, IATA 2 of 5, Interleaved 2 of 5, Matrix 2 of 5, MSI / MSI Plessey, GS1 DataBar, UPC/EAN/JAN, Straight 2 of 5 / Code 2 of 5 (Standard), Codablock F, MicroPDF / MicroPDF417, PDF417, Aztec Code, Data Matrix, Grid Matrix, Han Xin / Chinese Sensible, MaxiCode, QR Code, Australian Post, Canada Post, Japan Post, Korea Post, Planet / Planet Code, Post-Net / Postnet, UK Royal Mail / British Post, BC412, Hong Kong 2 of 5, NEC 2 of 5, Pharmacode, Plessey,  Telepen, Trioptic, Code 49, GS1 Composite (CC-A/CC-B/CC-C), Rectangular Extension, Micro QR Code, QR Model 1, GoCode (Optional License), Intelligent Mail, KIX Code, UPU ID-tags
 
 ### Ident-R 02 (FlexRange & Long Range)
 *   **Target Market:** Rugged industrial, warehouse, and logistics environments.
@@ -24,6 +25,7 @@ This document provides comprehensive technical specifications, feature compariso
 *   **Price Range (SGD):** 
     *   FlexRange: Pocket ($1,132), Grip ($1,930), Smart Grip ($1,979).
     *   Long Range: Pocket ($1,295), Grip ($1,767), Smart Grip ($2,141).
+*   **Symbologies supported:** Codabar, Code 11, Code 32 / Coupon Code 32, Code 39, Code 93, Code 128, IATA 2 of 5, Interleaved 2 of 5, Matrix 2 of 5, MSI / MSI Plessey, GS1 DataBar, UPC/EAN/JAN, Straight 2 of 5 / Code 2 of 5 (Standard), Codablock F, MicroPDF / MicroPDF417, PDF417, Aztec Code, Data Matrix, Grid Matrix, Han Xin / Chinese Sensible, MaxiCode, QR Code, Australian Post, Canada Post, Japan Post, Korea Post, Planet / Planet Code, Post-Net / Postnet, UK Royal Mail / British Post, Code 93i, Coupon GS1, EAN-UCC Emulation, UPC-A/EAN-13 with Extended Coupon Code, Codablock A, Dot Code, China Post, Netherlands Post
 
 ## 2. Reading Distance & Optical Capabilities
 
