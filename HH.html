@@ -285,35 +285,37 @@
                     body: JSON.stringify(payloadData)
                 });
 
-                const data = await response.json();
+const data = await response.json();
 
                 if (!response.ok) {
                     throw new Error(data.error || `HTTP error! status: ${response.status}`);
                 }
                 
-if (data.explanationHtml) {
+                // Handle both direct and nested object responses
+                const recData = data.explanationHtml ? data : (data.recommendation || data);
+
+                if (recData && recData.explanationHtml) {
                     // 1. Inject the HTML explanation directly
-                    document.getElementById('recommendation').innerHTML = data.explanationHtml;
+                    document.getElementById('recommendation').innerHTML = recData.explanationHtml;
             
                     let imageURLs = []; 
 
                     // 2. Read the boolean flag directly from the AI
-                    if (data.isTossUp === true) {
+                    if (recData.isTossUp === true) {
                         imageWrapper.style.display = 'none';
                     } else {
-                        // 3. Evaluate the exact model the AI specified in the JSON
-                        if (data.recommendedBaseModel.includes("OHV210")) {
+                        // 3. Evaluate the exact model specified in the JSON
+                        const baseModel = recData.recommendedBaseModel || "";
+                        if (baseModel.includes("OHV210")) {
                             imageURLs.push("https://wsaihopfsg.github.io/hh_selector/OHV210.png");
                             
-                        } else if (data.recommendedBaseModel.includes("Ident-R")) {
-                            const factors = data.recommendedFormFactors || [];
+                        } else if (baseModel.includes("Ident-R")) {
+                            const factors = recData.recommendedFormFactors || [];
                             
-                            // Check the exact array the AI provided
                             if (factors.includes("Pocket")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
                             if (factors.includes("Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
                             if (factors.includes("Smart Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
                             
-                            // Fallback if the array is somehow empty
                             if (imageURLs.length === 0) {
                                 imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
                             }
@@ -334,6 +336,11 @@ if (data.explanationHtml) {
                             imageWrapper.style.display = 'block';
                         }
                     }
+                } else {
+                    // Prevent hanging if response shape differs
+                    document.getElementById('recommendation').innerHTML = typeof data === 'string' 
+                        ? data 
+                        : `<pre>${JSON.stringify(data, null, 2)}</pre>`;
                 }
             } catch (error) {
                 document.getElementById('recommendation').innerHTML = `<p style="color:red;">Backend Error: ${error.message}</p>`;
