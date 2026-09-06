@@ -268,7 +268,11 @@
             };
 
             document.getElementById('output-section').style.display = 'block';
-            document.getElementById('image-wrapper').style.display = 'none'; 
+            
+            const imageWrapper = document.getElementById('image-wrapper');
+            imageWrapper.style.display = 'none'; 
+            imageWrapper.innerHTML = ''; // Clear previous images
+            
             document.getElementById('recommendation').innerHTML = '<p><em>Consulting Gemini AI...</em></p>';
 
             try {
@@ -291,19 +295,16 @@
                     document.getElementById('recommendation').innerHTML = data.recommendation;
             
                     const aiText = data.recommendation.toLowerCase();
-                    let imageUrl = "";
+                    let imageURLs = []; // Use an array to hold multiple image URLs
 
-                    // 1. Detect if the AI identified a conflict or toss-up
                     const isTossUp = aiText.includes("opposite directions") || 
                                      aiText.includes("trade-off") || 
                                      aiText.includes("conflicting metrics") || 
                                      aiText.includes("bottleneck");
 
                     if (isTossUp) {
-                        // Hide the image so the user isn't misled
-                        document.getElementById('image-wrapper').style.display = 'none';
+                        imageWrapper.style.display = 'none';
                     } else {
-                        // 2. Focus the search on the "final recommendation" segment if present
                         const recSectionIndex = aiText.indexOf("final recommendation");
                         const textToSearch = recSectionIndex !== -1 ? aiText.substring(recSectionIndex) : aiText;
 
@@ -318,23 +319,56 @@
                         let firstIdent = indexIdent !== -1 ? indexIdent : Infinity;
 
                         if (firstOHV !== Infinity && firstOHV < firstIdent) {
-                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/OHV210.png";
+                            imageURLs.push("https://wsaihopfsg.github.io/hh_selector/OHV210.png");
+                            
                         } else if (firstIdent !== Infinity) {
-                            if (textToSearch.includes("smart grip") || formFactorVal.includes("Smart Grip")) {
-                                imageUrl = "https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg";
-                            } else if (textToSearch.includes("pocket") || formFactorVal.includes("Pocket")) {
-                                imageUrl = "https://wsaihopfsg.github.io/hh_selector/pocket.png";
+                            
+                            // If user selected "NIL", check the AI's text for ALL mentioned form factors
+                            if (formFactorVal === "NIL") {
+                                let hasSmartGrip = textToSearch.includes("smart grip");
+                                let hasPocket = textToSearch.includes("pocket");
+                                
+                                // Strip "smart grip" from text to ensure standard "grip" isn't falsely triggered
+                                let textWithoutSmart = textToSearch.replace(/smart grip/g, "");
+                                let hasStandardGrip = textWithoutSmart.includes("grip") || textToSearch.includes("standard handheld");
+
+                                if (hasPocket) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
+                                if (hasStandardGrip) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
+                                if (hasSmartGrip) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
+                                
+                                // Fallback if AI didn't explicitly name them
+                                if (imageURLs.length === 0) {
+                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
+                                }
+                                
                             } else {
-                                imageUrl = "https://wsaihopfsg.github.io/hh_selector/Grip.png";
+                                // If user explicitly requested one, only show that specific image
+                                if (formFactorVal.includes("Smart Grip")) {
+                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
+                                } else if (formFactorVal.includes("Pocket")) {
+                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
+                                } else {
+                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
+                                }
                             }
                         }
 
-                        if (imageUrl !== "") {
-                            document.getElementById('product-img').src = imageUrl;
-                            document.getElementById('image-wrapper').style.display = 'block';
+                        // Inject all collected images into the DOM
+                        if (imageURLs.length > 0) {
+                            imageURLs.forEach(url => {
+                                const imgElement = document.createElement('img');
+                                imgElement.src = url;
+                                imgElement.alt = "Recommended Scanner";
+                                imgElement.style.marginBottom = "20px"; // Adds space between stacked images
+                                imgElement.style.width = "100%";
+                                imgElement.style.borderRadius = "6px";
+                                imgElement.style.display = "block";
+                                imageWrapper.appendChild(imgElement);
+                            });
+                            imageWrapper.style.display = 'block';
                         }
                     }
-                } // <-- THIS missing bracket caused the failure
+                }
             } catch (error) {
                 document.getElementById('recommendation').innerHTML = `<p style="color:red;">Backend Error: ${error.message}</p>`;
             } finally {
