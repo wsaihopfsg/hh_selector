@@ -291,75 +291,41 @@
                     throw new Error(data.error || `HTTP error! status: ${response.status}`);
                 }
                 
-                if (data.recommendation) {
-                    document.getElementById('recommendation').innerHTML = data.recommendation;
+if (data.explanationHtml) {
+                    // 1. Inject the HTML explanation directly
+                    document.getElementById('recommendation').innerHTML = data.explanationHtml;
             
-                    const aiText = data.recommendation.toLowerCase();
-                    let imageURLs = []; // Use an array to hold multiple image URLs
+                    let imageURLs = []; 
 
-                    const isTossUp = aiText.includes("opposite directions") || 
-                                     aiText.includes("trade-off") || 
-                                     aiText.includes("conflicting metrics") || 
-                                     aiText.includes("bottleneck");
-
-                    if (isTossUp) {
+                    // 2. Read the boolean flag directly from the AI
+                    if (data.isTossUp === true) {
                         imageWrapper.style.display = 'none';
                     } else {
-                        const recSectionIndex = aiText.indexOf("final recommendation");
-                        const textToSearch = recSectionIndex !== -1 ? aiText.substring(recSectionIndex) : aiText;
-
-                        const indexOHV = textToSearch.indexOf("ohv210");
-                        const indexCR = textToSearch.indexOf("cr2700");
-                        const indexIdent = textToSearch.indexOf("ident-r");
-                
-                        let firstOHV = Math.min(
-                            indexOHV !== -1 ? indexOHV : Infinity, 
-                            indexCR !== -1 ? indexCR : Infinity
-                        );
-                        let firstIdent = indexIdent !== -1 ? indexIdent : Infinity;
-
-                        if (firstOHV !== Infinity && firstOHV < firstIdent) {
+                        // 3. Evaluate the exact model the AI specified in the JSON
+                        if (data.recommendedBaseModel.includes("OHV210")) {
                             imageURLs.push("https://wsaihopfsg.github.io/hh_selector/OHV210.png");
                             
-                        } else if (firstIdent !== Infinity) {
+                        } else if (data.recommendedBaseModel.includes("Ident-R")) {
+                            const factors = data.recommendedFormFactors || [];
                             
-                            // If user selected "NIL", check the AI's text for ALL mentioned form factors
-                            if (formFactorVal === "NIL") {
-                                let hasSmartGrip = textToSearch.includes("smart grip");
-                                let hasPocket = textToSearch.includes("pocket");
-                                
-                                // Strip "smart grip" from text to ensure standard "grip" isn't falsely triggered
-                                let textWithoutSmart = textToSearch.replace(/smart grip/g, "");
-                                let hasStandardGrip = textWithoutSmart.includes("grip") || textToSearch.includes("standard handheld");
-
-                                if (hasPocket) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
-                                if (hasStandardGrip) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
-                                if (hasSmartGrip) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
-                                
-                                // Fallback if AI didn't explicitly name them
-                                if (imageURLs.length === 0) {
-                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
-                                }
-                                
-                            } else {
-                                // If user explicitly requested one, only show that specific image
-                                if (formFactorVal.includes("Smart Grip")) {
-                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
-                                } else if (formFactorVal.includes("Pocket")) {
-                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
-                                } else {
-                                    imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
-                                }
+                            // Check the exact array the AI provided
+                            if (factors.includes("Pocket")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
+                            if (factors.includes("Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
+                            if (factors.includes("Smart Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
+                            
+                            // Fallback if the array is somehow empty
+                            if (imageURLs.length === 0) {
+                                imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
                             }
                         }
 
-                        // Inject all collected images into the DOM
+                        // 4. Inject collected images into the DOM
                         if (imageURLs.length > 0) {
                             imageURLs.forEach(url => {
                                 const imgElement = document.createElement('img');
                                 imgElement.src = url;
                                 imgElement.alt = "Recommended Scanner";
-                                imgElement.style.marginBottom = "20px"; // Adds space between stacked images
+                                imgElement.style.marginBottom = "20px";
                                 imgElement.style.width = "100%";
                                 imgElement.style.borderRadius = "6px";
                                 imgElement.style.display = "block";
