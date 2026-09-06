@@ -71,7 +71,9 @@ When prompting the customer for requirements or making a recommendation, apply t
 **Rule 3: Modularity & Form Factor Preferences**
 *   **IF** the customer wants to attach a mobile device/smartphone directly to the scanner for an all-in-one terminal feel: **Recommend Ident-R 02 (Smart Grip).**
 *   **IF** the customer needs a highly portable, pocket-sized device without a handle: **Recommend Ident-R 02 (Pocket).**
+**  CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
 
+**CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
 **Rule 4: Motion Detection & Presentation Scanning**
 *   **IF** the customer requires hands-free scanning, motion detection, or a hybrid stationary/mobile workflow (e.g., picking processes where packages are held under the base station): **Recommend OHV210.**
 
