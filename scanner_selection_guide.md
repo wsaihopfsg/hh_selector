@@ -65,6 +65,7 @@ When prompting the customer for requirements or making a recommendation, apply t
 *   **IF** the customer needs to scan tiny, high-density barcodes (e.g., 3 mil at 90-112mm) or scan standard barcodes at very close proximity (under 100mm): **Recommend OHV210.**
 *   **IF** the customer needs to scan shelves, pallets, or standard warehouse items from medium distances (up to 7 meters): **Recommend Ident-R 02 FlexRange.**
 *   **IF** the customer needs to scan extremely far targets (up to 26 meters, like high warehouse racks or outdoor logistical yards): **Recommend Ident-R 02 Long Range.**
+*   **IF** the customer needs to scan certain symbologies, check the Symbologies supported and recommend only readers that are able to read the required symbologies
 
 **Rule 2: Environmental & Hygiene Constraints**
 *   **IF** the environment requires strict infection control, chemical wipe-downs, or inductive charging to avoid exposed metal contacts (e.g., hospitals, clean rooms): **Recommend OHV210.**
