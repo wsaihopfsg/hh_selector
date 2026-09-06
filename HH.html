@@ -287,60 +287,61 @@
                     throw new Error(data.error || `HTTP error! status: ${response.status}`);
                 }
                 
-        if (data.recommendation) {
-            document.getElementById('recommendation').innerHTML = data.recommendation;
+                if (data.recommendation) {
+                    document.getElementById('recommendation').innerHTML = data.recommendation;
     
-            const aiText = data.recommendation.toLowerCase();
-            let imageUrl = "";
+                    const aiText = data.recommendation.toLowerCase();
+                    let imageUrl = "";
 
-            // 1. Detect if the AI identified a conflict or toss-up
-            const isTossUp = aiText.includes("opposite directions") || 
-                     aiText.includes("trade-off") || 
-                     aiText.includes("conflicting metrics") || 
-                     aiText.includes("bottleneck");
+                    // 1. Detect if the AI identified a conflict or toss-up
+                    const isTossUp = aiText.includes("opposite directions") || 
+                             aiText.includes("trade-off") || 
+                             aiText.includes("conflicting metrics") || 
+                             aiText.includes("bottleneck");
 
-            if (isTossUp) {
+                    if (isTossUp) {
         // Option A: Hide the single product image so the user isn't misled
-                document.getElementById('image-wrapper').style.display = 'none';
+                        document.getElementById('image-wrapper').style.display = 'none';
         
         // Option B (Alternative): If you have a comparison/versus image:
         // imageUrl = "https://wsaihopfsg.github.io/hh_selector/comparison.png";
         // document.getElementById('product-img').src = imageUrl;
         // document.getElementById('image-wrapper').style.display = 'block';
-                return;
-            }
+                        return;
+                    }
 
     // 2. Focus the search on the "final recommendation" segment if present
-            const recSectionIndex = aiText.indexOf("final recommendation");
-            const textToSearch = recSectionIndex !== -1 ? aiText.substring(recSectionIndex) : aiText;
+                    const recSectionIndex = aiText.indexOf("final recommendation");
+                    const textToSearch = recSectionIndex !== -1 ? aiText.substring(recSectionIndex) : aiText;
 
-            const indexOHV = textToSearch.indexOf("ohv210");
-            const indexCR = textToSearch.indexOf("cr2700");
-            const indexIdent = textToSearch.indexOf("ident-r");
+                    const indexOHV = textToSearch.indexOf("ohv210");
+                    const indexCR = textToSearch.indexOf("cr2700");
+                    const indexIdent = textToSearch.indexOf("ident-r");
     
-            let firstOHV = Math.min(
-                indexOHV !== -1 ? indexOHV : Infinity, 
-                indexCR !== -1 ? indexCR : Infinity
-            );
-            let firstIdent = indexIdent !== -1 ? indexIdent : Infinity;
+                    let firstOHV = Math.min(
+                        indexOHV !== -1 ? indexOHV : Infinity, 
+                        indexCR !== -1 ? indexCR : Infinity
+                    );
+                    let firstIdent = indexIdent !== -1 ? indexIdent : Infinity;
 
-            if (firstOHV !== Infinity && firstOHV < firstIdent) {
-                imageUrl = "https://wsaihopfsg.github.io/hh_selector/OHV210.png";
-            } else if (firstIdent !== Infinity) {
-                if (textToSearch.includes("smart grip") || formFactorVal.includes("Smart Grip")) {
-                    imageUrl = "https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg";
-                } else if (textToSearch.includes("pocket") || formFactorVal.includes("Pocket")) {
-                    imageUrl = "https://wsaihopfsg.github.io/hh_selector/pocket.png";
-                } else {
-                    imageUrl = "https://wsaihopfsg.github.io/hh_selector/Grip.png";
+                    if (firstOHV !== Infinity && firstOHV < firstIdent) {
+                        imageUrl = "https://wsaihopfsg.github.io/hh_selector/OHV210.png";
+                    } else if (firstIdent !== Infinity) {
+                        if (textToSearch.includes("smart grip") || formFactorVal.includes("Smart Grip")) {
+                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg";
+                        } else if (textToSearch.includes("pocket") || formFactorVal.includes("Pocket")) {
+                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/pocket.png";
+                        } else {
+                            imageUrl = "https://wsaihopfsg.github.io/hh_selector/Grip.png";
+                        }
+                    }
+
+                    if (imageUrl !== "") {
+                        document.getElementById('product-img').src = imageUrl;
+                        document.getElementById('image-wrapper').style.display = 'block';
+                    }
                 }
-            }
-
-            if (imageUrl !== "") {
-                document.getElementById('product-img').src = imageUrl;
-                document.getElementById('image-wrapper').style.display = 'block';
-            }
-        } catch (error) {
+            } catch (error) {
                 document.getElementById('recommendation').innerHTML = `<p style="color:red;">Backend Error: ${error.message}</p>`;
             } finally {
                 askBtn.innerHTML = 'Ask<br>AI';
