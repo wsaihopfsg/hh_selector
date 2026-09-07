@@ -187,14 +187,6 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="environment">Environment & Hygiene</label>
-                <select id="environment">
-                    <option value="NIL">NIL (Not Specified)</option>
-                    <option value="Healthcare / Strict Infection Control (Chemical Washdown)">Healthcare / Strict Infection Control (Chemical Washdown)</option>
-                    <option value="Rugged Industrial (IP68)">Rugged Industrial (IP68)</option>
-                </select>
-            </div>
 
             <div class="form-group">
                 <label for="form-factor">Preferred Form Factor</label>
@@ -210,6 +202,7 @@
                 <label for="motion-detection">Special Features</label>
                 <select id="motion-detection">
                     <option value="NIL">NIL (Not Specified)</option>
+                    <option value="Healthcare / Strict Infection Control (Chemical Washdown)">Healthcare / Strict Infection Control (Chemical Washdown)</option>
                     <option value="Required (Stationary presentation scanning in charging base)">Motion detection scanning in charging base</option>
                     <option value="Required (Swappable batteries)">Swappable batteries</option>
                 </select>
@@ -261,7 +254,7 @@
                 githubUrl: hardcodedGithubUrl,
                 userPrompt: document.getElementById('user-prompt').value || "No specific workflow provided.",
                 distance: document.getElementById('distance').value,
-                environment: document.getElementById('environment').value,
+                
                 formFactor: formFactorVal,
                 motionDetection: document.getElementById('motion-detection').value,
                 dataProcessing: document.getElementById('data-processing').value,
