@@ -114,7 +114,7 @@
             border-radius: 6px;
             display: none;
             animation: fadeIn 0.5s ease;
-            max-height: 350px; 
+            max-height: 300px; 
             overflow-y: auto;
         }
         @keyframes fadeIn {
@@ -168,7 +168,7 @@
 
     <div class="container">
         <h1>Handheld Scanner AI Recommendation</h1>
-        <p class="intro">Describe your operational needs and define key metrics. Our AI will analyze your inputs to recommend the best fit: <strong>OHV210</strong>, <strong>Ident-R 02 FlexRange</strong>, or <strong>Ident-R 02 Long Range</strong>.</p>
+        <p class="intro">Describe your operational needs and define key metrics. Our AI will analyze your inputs to recommend the best fit: <strong>OHV210</strong>, <strong>Ident-Force 02 FlexRange</strong>, or <strong>Ident-Force 02 Long Range</strong>.</p>
         
         <div class="form-group">
             <label for="user-prompt">Workflow & Use Case Description (Optional/Free-text):</label>
@@ -305,7 +305,7 @@ const data = await response.json();
                         if (baseModel.includes("OHV210")) {
                             imageURLs.push("https://wsaihopfsg.github.io/hh_selector/OHV210.png");
                             
-                        } else if (baseModel.includes("Ident-R")) {
+                        } else if (baseModel.includes("Ident-Force")) {
                             const factors = recData.recommendedFormFactors || [];
                             
                             if (factors.includes("Pocket")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
