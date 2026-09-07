@@ -86,5 +86,9 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 **Rule 4: Motion Detection & Presentation Scanning**
 *   **IF** the customer requires hands-free scanning, motion detection, or a hybrid stationary/mobile workflow (e.g., picking processes where packages are held under the base station): **Recommend OHV210.**
 
+**Rule 4: Special Features**
+*   **IF** the customer requires motion detection when attached to charging base **Recommend OHV210.**
+*   **IF** the customer requires swappable batteries **Recommend OHV210.**
+
 **Rule 5: Data Processing**
 *   **IF** the customer requires complex, onboard data parsing or editing via JavaScript before the barcode data reaches the host PC: **Recommend OHV210.**
