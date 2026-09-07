@@ -4,7 +4,7 @@ This document provides comprehensive technical specifications, feature compariso
 
 ## 1. Product Overviews
 
-### OHV210 (OEM: Code Reader™ 2700 / CR2702)
+### OHV210 
 *   **Target Market:** Healthcare, clean-rooms, picking processes, and environments requiring strict infection control or stationary scanning.
 *   **Key Features:** Inductive charging (no exposed metal contacts), PVC-Free CodeShield® plastics designed to withstand harsh chemical disinfectants, JavaScript-based advanced data editing, Bluetooth 5.0 (BLE), replaceable batteries with push-button charge status.
 *   **Wireless & Connectivity:** Records data and transmits wirelessly to the charging station via 2.4 GHz technology. Uses a Quick Connect code for simple pairing. Data automatically transfers from the station to a PC, smartphone, or tablet via USB.
