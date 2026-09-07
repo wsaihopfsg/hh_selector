@@ -59,7 +59,7 @@ This document provides comprehensive technical specifications, feature compariso
 
 ## 4. AI Decision-Making Logic
 
-When prompting the customer for requirements or making a recommendation, apply the following conditional logic:
+When prompting the customer for requirements or making a recommendation, apply the conditional logic shown below. However, do not mention the Rule Number in your explanantion.
 
 **Rule 0: Strict Elimination & Impossible Conflicts (CRITICAL)**
 Symbology support and reading distance are absolute, non-negotiable constraints. A scanner MUST meet BOTH to be recommended. 
