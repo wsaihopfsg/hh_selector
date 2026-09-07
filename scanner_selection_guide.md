@@ -11,7 +11,7 @@ This document provides comprehensive technical specifications, feature compariso
 *   **Motion Detection & Stationary Use:** Automatically activates motion detection mode when plugged into the charging station, allowing users to pass packages under the reading window for hands-free presentation scanning. Removing the device from the station instantly reverts it to mobile reading mode.
 *   **Durability:** IP65 rating, withstands 1.8m drops to concrete.
 *   **Form Factor:** Standard handheld reader (177g including battery).
-*   **Price:** ~$2,070 SGD.
+*   **Price:** ~€1,400.
 *   **Symbologies supported:** Codabar, Code 11, Code 32 / Coupon Code 32, Code 39, Code 93, Code 128, IATA 2 of 5, Interleaved 2 of 5, Matrix 2 of 5, MSI / MSI Plessey, GS1 DataBar, UPC/EAN/JAN, Straight 2 of 5 / Code 2 of 5 (Standard), Codablock F, MicroPDF / MicroPDF417, PDF417, Aztec Code, Data Matrix, Grid Matrix, Han Xin / Chinese Sensible, MaxiCode, QR Code, Australian Post, Canada Post, Japan Post, Korea Post, Planet / Planet Code, Post-Net / Postnet, UK Royal Mail / British Post, BC412, Hong Kong 2 of 5, NEC 2 of 5, Pharmacode, Plessey,  Telepen, Trioptic, Code 49, GS1 Composite (CC-A/CC-B/CC-C), Rectangular Extension, Micro QR Code, QR Model 1, GoCode (Optional License), Intelligent Mail, Netherlands Post / KIX Code, UPU ID-tags
 
 ### Ident-R 02 (FlexRange & Long Range)
@@ -22,9 +22,9 @@ This document provides comprehensive technical specifications, feature compariso
     *   Pocket Mode (150g)
     *   Grip Mode (260g)
     *   Smart Grip Mode (356g, includes a holding tray to mount an Ex smartphone directly to the scanner).
-*   **Price Range (SGD):** 
-    *   FlexRange: Pocket ($1,132), Grip ($1,930), Smart Grip ($1,979).
-    *   Long Range: Pocket ($1,295), Grip ($1,767), Smart Grip ($2,141).
+*   **Price Range (EUR):** 
+    *   FlexRange: Pocket (€695), Grip (€1,085), Smart Grip (€1,215).
+    *   Long Range: Pocket (€795), Grip (€1,185), Smart Grip (€1,315).
 *   **Symbologies supported:** Codabar, Code 11, Code 32 / Coupon Code 32, Code 39, Code 93, Code 128, IATA 2 of 5, Interleaved 2 of 5, Matrix 2 of 5, MSI / MSI Plessey, GS1 DataBar, UPC/EAN/JAN, Straight 2 of 5 / Code 2 of 5 (Standard), Codablock F, MicroPDF / MicroPDF417, PDF417, Aztec Code, Data Matrix, Grid Matrix, Han Xin / Chinese Sensible, MaxiCode, QR Code, Australian Post, Canada Post, Japan Post, Korea Post, Planet / Planet Code, Post-Net / Postnet, UK Royal Mail / British Post, Code 93i, Coupon GS1, EAN-UCC Emulation, UPC-A/EAN-13 with Extended Coupon Code, Codablock A, Dot Code, China Post, Netherlands Post / KIX Code
 
 ## 2. Reading Distance & Optical Capabilities
