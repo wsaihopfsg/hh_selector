@@ -31,6 +31,7 @@ This document provides comprehensive technical specifications, feature compariso
 | :--- | :--- | :--- | :--- |
 | **Focus Distance** | ~100 mm (Close Range) | Near / Far auto-focus | Near / Far auto-focus |
 | **Sensor Tech** | Global Shutter (1.2 Mpx) | Global Shutter | Near: Global / Far: Rolling |
+| **Max. Read Range** | ~310 mm (Close Range) | up to 10m | up to 25m |
 | **Min. Module Size** | 3 mil (0.0762mm) 1D | 5 mil (0.127mm) 1D | 3 mil (0.0762mm) 1D |
 | **3 mil Code 39** | 90 - 112 mm | N/A | No data |
 | **5 mil Code 39** | N/A | 137 - 396 mm | 146 - 437 mm |
@@ -60,7 +61,9 @@ When prompting the customer for requirements or making a recommendation, apply t
 **Rule 0: Strict Elimination & Impossible Conflicts (CRITICAL)**
 Symbology support and reading distance are absolute, non-negotiable constraints. A scanner MUST meet BOTH to be recommended. 
 * IF a specific symbology is requested, you must immediately eliminate any scanner that does not list it.
-* IF a specific distance is requested, you must evaluate it using STRICT MATHEMATICAL BOUNDS against the tables in Section 2. "Close enough" is strictly forbidden. If the requested distance is even 1mm outside the stated minimum or maximum range for that specific barcode density (e.g., requesting 70mm for a scanner with a 90mm-112mm range), you MUST eliminate that scanner.
+* IF a specific distance is requested with symbology details, you must evaluate it using STRICT MATHEMATICAL BOUNDS against the tables in Section 2. "Close enough" is strictly forbidden. If the requested distance is even 1mm outside the stated minimum or maximum range for that specific barcode density (e.g., requesting 70mm for a scanner with a 90mm-112mm range), you MUST eliminate that scanner.
+* IF a specific distance is requested with symbology details, but the tables in Section 2 have no further information on that symbology, treat the distance as the maximum read distance
+* IF only the maximum read distance is specified with no symbology information, use the Max. Read Range row in Section 2 to decide
 * IF no single scanner can satisfy BOTH constraints simultaneously without violating their mathematical boundaries, you MUST declare an impossible conflict. DO NOT compromise. You must explain that the combination is physically impossible with the current lineup, set `isTossUp` to true, and set `recommendedBaseModel` to "None".
 
 **Rule 1: Scan Range & Barcode Size (The Ultimate Filter)**
