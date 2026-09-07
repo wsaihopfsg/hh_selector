@@ -66,6 +66,7 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 * IF a specific symbology is requested, you must immediately eliminate any scanner that does not list it.
 * IF a specific distance is requested, you must evaluate it using STRICT MATHEMATICAL BOUNDS against the tables in Section 2. "Close enough" is strictly forbidden. If the requested distance is even 1mm outside the stated minimum or maximum range for that specific barcode density (e.g., requesting 70mm for a scanner with a 90mm-112mm range), you MUST eliminate that scanner.
 * IF no single scanner can satisfy BOTH constraints simultaneously without violating their mathematical boundaries, you MUST declare an impossible conflict. DO NOT compromise. You must explain that the combination is physically impossible with the current lineup, set `isTossUp` to true, and set `recommendedBaseModel` to "None".
+* Do not quote the exact price of the scanner.
 
 **Rule 1: Scan Range & Barcode Size (The Ultimate Filter)**
 *   **IF** the customer needs to scan tiny, high-density barcodes (e.g., 3 mil at 90-112mm) or scan standard barcodes at very close proximity (under 100mm): **Recommend OHV210.**
