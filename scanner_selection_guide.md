@@ -61,7 +61,7 @@ When prompting the customer for requirements or making a recommendation, apply t
 **Rule 0: Strict Elimination & Impossible Conflicts (CRITICAL)**
 Symbology support and reading distance are absolute, non-negotiable constraints. A scanner MUST meet BOTH to be recommended. 
 * IF a specific symbology is requested, you must immediately eliminate any scanner that does not list it.
-* IF a specific distance is requested, you must evaluate it using STRICT MATHEMATICAL BOUNDS against the tables in Section 2. "Close enough" is strictly forbidden. If the requested distance is even 1mm outside the stated minimum or maximum range for that specific barcode density (e.g., requesting 70mm for a scanner with a 90mm-112mm range), you MUST eliminate that scanner.
+* IF a specific distance is requested, you must evaluate it against the tables in Section 2 with 200mm margin due to manual movement of the scanner (e.g., requesting 70mm for a scanner with a 90mm-112mm range). For such choices that require manual range adjustment, please indicate clearly in the recommendation reasoning
 * IF a specific distance is requested with symbology details, but the tables in Section 2 have no further information on that symbology, treat the distance as the maximum read distance
 * IF only the maximum read distance is specified with no symbology information, use the Max. Read Range row in Section 2 to decide
 * IF no single scanner can satisfy BOTH constraints simultaneously without violating their mathematical boundaries, you MUST declare an impossible conflict. DO NOT compromise. You must explain that the combination is physically impossible with the current lineup, set `isTossUp` to true, and set `recommendedBaseModel` to "None".
