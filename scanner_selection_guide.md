@@ -80,6 +80,7 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 *   **IF** the customer wants to attach a mobile device/smartphone directly to the scanner for an all-in-one terminal feel: **Recommend Ident-Force 02 (Smart Grip).**
 *   **IF** the customer needs a highly portable, pocket-sized device without a handle: **Recommend Ident-Force 02 (Pocket).**
 **  CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
+*   **IF** the customer has no preference on form-factor and Ident-Force 02 is recommended, **Recommend all 3 form factors for Ident-Force 02 (Pocket, Grip and Smart Grip).**
 
 **CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
 
