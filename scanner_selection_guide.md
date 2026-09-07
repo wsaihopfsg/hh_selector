@@ -1,4 +1,4 @@
-# Barcode Scanner AI Selection Guide: OHV210 vs Ident-R 02 (Flex & Long)
+# Barcode Scanner AI Selection Guide: OHV210 vs Ident-Force 02 (Flex & Long)
 
 This document provides comprehensive technical specifications, feature comparisons, and decision-making criteria to assist an AI in recommending the appropriate barcode scanner for a customer's specific needs.
 
@@ -14,7 +14,7 @@ This document provides comprehensive technical specifications, feature compariso
 *   **Price:** ~€1,400.
 *   **Symbologies supported:** Codabar, Code 11, Code 32 / Coupon Code 32, Code 39, Code 93, Code 128, IATA 2 of 5, Interleaved 2 of 5, Matrix 2 of 5, MSI / MSI Plessey, GS1 DataBar, UPC/EAN/JAN, Straight 2 of 5 / Code 2 of 5 (Standard), Codablock F, MicroPDF / MicroPDF417, PDF417, Aztec Code, Data Matrix, Grid Matrix, Han Xin / Chinese Sensible, MaxiCode, QR Code, Australian Post, Canada Post, Japan Post, Korea Post, Planet / Planet Code, Post-Net / Postnet, UK Royal Mail / British Post, BC412, Hong Kong 2 of 5, NEC 2 of 5, Pharmacode, Plessey,  Telepen, Trioptic, Code 49, GS1 Composite (CC-A/CC-B/CC-C), Rectangular Extension, Micro QR Code, QR Model 1, GoCode (Optional License), Intelligent Mail, Netherlands Post / KIX Code, UPU ID-tags
 
-### Ident-R 02 (FlexRange & Long Range)
+### Ident-Force 02 (FlexRange & Long Range)
 *   **Target Market:** Rugged industrial, warehouse, and logistics environments.
 *   **Key Features:** Highly modular design, NFC fast pairing, Bluetooth 5.4 (Classic + BLE), EZConfig software for formatting.
 *   **Durability:** IP68 rating.
@@ -31,7 +31,7 @@ This document provides comprehensive technical specifications, feature compariso
 
 *Crucial decision metric: distance and barcode size.*
 
-| Metric | OHV210 | Ident-R 02 FlexRange | Ident-R 02 Long Range |
+| Metric | OHV210 | Ident-Force 02 FlexRange | Ident-Force 02 Long Range |
 | :--- | :--- | :--- | :--- |
 | **Focus Distance** | ~100 mm (Close Range) | Near / Far auto-focus | Near / Far auto-focus |
 | **Sensor Tech** | Global Shutter (1.2 Mpx) | Global Shutter | Near: Global / Far: Rolling |
@@ -47,7 +47,7 @@ This document provides comprehensive technical specifications, feature compariso
 
 ## 3. General Specifications Comparison
 
-| Feature | OHV210 | Ident-R 02 |
+| Feature | OHV210 | Ident-Force 02 |
 | :--- | :--- | :--- |
 | **IP Rating** | IP65 | IP68 |
 | **Bluetooth** | 5.0 (BLE, Class II) | 5.4 (Classic + BLE) |
@@ -69,17 +69,17 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 
 **Rule 1: Scan Range & Barcode Size (The Ultimate Filter)**
 *   **IF** the customer needs to scan tiny, high-density barcodes (e.g., 3 mil at 90-112mm) or scan standard barcodes at very close proximity (under 100mm): **Recommend OHV210.**
-*   **IF** the customer needs to scan shelves, pallets, or standard warehouse items from medium distances (up to 7 meters): **Recommend Ident-R 02 FlexRange.**
-*   **IF** the customer needs to scan extremely far targets (up to 26 meters, like high warehouse racks or outdoor logistical yards): **Recommend Ident-R 02 Long Range.**
+*   **IF** the customer needs to scan shelves, pallets, or standard warehouse items from medium distances (up to 7 meters): **Recommend Ident-Force 02 FlexRange.**
+*   **IF** the customer needs to scan extremely far targets (up to 26 meters, like high warehouse racks or outdoor logistical yards): **Recommend Ident-Force 02 Long Range.**
 *   **IF** the customer needs to scan certain symbologies, check the Symbologies supported and recommend only readers that are able to read the required symbologies
 
 **Rule 2: Environmental & Hygiene Constraints**
 *   **IF** the environment requires strict infection control, chemical wipe-downs, or inductive charging to avoid exposed metal contacts (e.g., hospitals, clean rooms): **Recommend OHV210.**
-*   **IF** the environment is heavy industrial, extremely dusty, or wet and requires the highest level of ingress protection (IP68): **Recommend Ident-R 02.**
+*   **IF** the environment is heavy industrial, extremely dusty, or wet and requires the highest level of ingress protection (IP68): **Recommend Ident-Force 02.**
 
 **Rule 3: Modularity & Form Factor Preferences**
-*   **IF** the customer wants to attach a mobile device/smartphone directly to the scanner for an all-in-one terminal feel: **Recommend Ident-R 02 (Smart Grip).**
-*   **IF** the customer needs a highly portable, pocket-sized device without a handle: **Recommend Ident-R 02 (Pocket).**
+*   **IF** the customer wants to attach a mobile device/smartphone directly to the scanner for an all-in-one terminal feel: **Recommend Ident-Force 02 (Smart Grip).**
+*   **IF** the customer needs a highly portable, pocket-sized device without a handle: **Recommend Ident-Force 02 (Pocket).**
 **  CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
 
 **CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
