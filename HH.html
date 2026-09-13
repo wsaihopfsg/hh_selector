@@ -295,44 +295,45 @@ const data = await response.json();
                     document.getElementById('recommendation').innerHTML = recData.explanationHtml;
             
                     let imageURLs = []; 
-
-                    // 2. Read the boolean flag directly from the AI
-                    if (recData.isTossUp === true) {
-                        imageWrapper.style.display = 'none';
-                    } else {
-                        // 3. Evaluate the exact model specified in the JSON
-                        const baseModel = recData.recommendedBaseModel || "";
-                        if (baseModel.includes("OHV210")) {
-                            imageURLs.push("https://wsaihopfsg.github.io/hh_selector/OHV210.png");
-                            
-                        } else if (baseModel.includes("Ident-Force")) {
-                            const factors = recData.recommendedFormFactors || [];
-                            
-                            if (factors.includes("Pocket")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
-                            if (factors.includes("Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
-                            if (factors.includes("Smart Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
-                            
-                            if (imageURLs.length === 0) {
-                                imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
-                            }
-                        }
-
-                        // 4. Inject collected images into the DOM
-                        if (imageURLs.length > 0) {
-                            imageURLs.forEach(url => {
-                                const imgElement = document.createElement('img');
-                                imgElement.src = url;
-                                imgElement.alt = "Recommended Scanner";
-                                imgElement.style.marginBottom = "20px";
-                                imgElement.style.width = "100%";
-                                imgElement.style.borderRadius = "6px";
-                                imgElement.style.display = "block";
-                                imageWrapper.appendChild(imgElement);
-                            });
-                            imageWrapper.style.display = 'block';
+                    
+                    // 2. Evaluate the exact model specified in the JSON (Ignoring the toss-up hide rule)
+                    const baseModel = recData.recommendedBaseModel || "";
+                    
+                    if (baseModel.includes("OHV210")) {
+                        imageURLs.push("https://wsaihopfsg.github.io/hh_selector/OHV210.png");
+                        
+                    } else if (baseModel.includes("Ident-Force")) {
+                        const factors = recData.recommendedFormFactors || [];
+                        
+                        if (factors.includes("Pocket")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/pocket.png");
+                        if (factors.includes("Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
+                        if (factors.includes("Smart Grip")) imageURLs.push("https://wsaihopfsg.github.io/hh_selector/SmartGrip.jpg");
+                        
+                        // Default fallback if no specific form factor is caught
+                        if (imageURLs.length === 0) {
+                            imageURLs.push("https://wsaihopfsg.github.io/hh_selector/Grip.png");
                         }
                     }
-                } else {
+
+                    // 3. Inject collected images into the DOM
+                    if (imageURLs.length > 0) {
+                        imageURLs.forEach(url => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = url;
+                            imgElement.alt = "Recommended Scanner";
+                            imgElement.style.marginBottom = "20px";
+                            imgElement.style.width = "100%";
+                            imgElement.style.borderRadius = "6px";
+                            imgElement.style.display = "block";
+                            imageWrapper.appendChild(imgElement);
+                        });
+                        imageWrapper.style.display = 'block';
+                    } else {
+                        // Only hide the wrapper if absolutely no images matched
+                        imageWrapper.style.display = 'none';
+                    }
+                }
+            } else {
                     // Prevent hanging if response shape differs
                     document.getElementById('recommendation').innerHTML = typeof data === 'string' 
                         ? data 
