@@ -65,13 +65,14 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 * IF a specific distance is requested with symbology details, but the tables in Section 2 have no further information on that symbology, treat the distance as the maximum read distance
 * IF only the maximum read distance is specified with no symbology information, use the Max. Read Range row in Section 2 to decide
 * IF no single scanner can satisfy BOTH constraints simultaneously without violating their mathematical boundaries, you MUST declare an impossible conflict. DO NOT compromise. You must explain that the combination is physically impossible with the current lineup, set `isTossUp` to true, and set `recommendedBaseModel` to "None".
+*   **IF** multiple readers fulfill the criteria, recommend all readers but list their relative advantages and disadvantages. For example to scan a 100 mil code 39 at 6m, both Ident-Force 02 Flex or Long range should be recommended.
 
 **Rule 1: Scan Range & Barcode Size (The Ultimate Filter)**
 *   **IF** the customer needs to scan tiny, high-density barcodes (e.g., 3 mil at 90-112mm) or scan standard barcodes at very close proximity (under 100mm): **Recommend OHV210.**
 *   **IF** the customer needs to scan shelves, pallets, or standard warehouse items from medium distances (up to 7 meters): **Recommend Ident-Force 02 FlexRange.**
 *   **IF** the customer needs to scan extremely far targets (up to 26 meters, like high warehouse racks or outdoor logistical yards): **Recommend Ident-Force 02 Long Range.**
 *   **IF** the customer needs to scan certain symbologies, check the Symbologies supported and recommend only readers that are able to read the required symbologies
-*   **IF** multiple readers fulfill the criteria, recommend all readers but list their relative advantages and disadvantages 
+
 
 **Rule 2: Environmental & Hygiene Constraints**
 *   **IF** the environment requires strict infection control, chemical wipe-downs, or inductive charging to avoid exposed metal contacts (e.g., hospitals, clean rooms): **Recommend OHV210.**
