@@ -281,7 +281,7 @@
                     body: JSON.stringify(payloadData)
                 });
 
-const data = await response.json();
+                const data = await response.json();
 
                 if (!response.ok) {
                     throw new Error(data.error || `HTTP error! status: ${response.status}`);
@@ -332,7 +332,6 @@ const data = await response.json();
                         // Only hide the wrapper if absolutely no images matched
                         imageWrapper.style.display = 'none';
                     }
-                }
             } else {
                     // Prevent hanging if response shape differs
                     document.getElementById('recommendation').innerHTML = typeof data === 'string' 
