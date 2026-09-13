@@ -65,7 +65,7 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 * IF a specific distance is requested with symbology details, but the tables in Section 2 have no further information on that symbology, treat the distance as the maximum read distance
 * IF only the maximum read distance is specified with no symbology information, use the Max. Read Range row in Section 2 to decide
 * IF no single scanner can satisfy BOTH constraints simultaneously without violating their mathematical boundaries, you MUST declare an impossible conflict. DO NOT compromise. You must explain that the combination is physically impossible with the current lineup, set `isTossUp` to true, and set `recommendedBaseModel` to "None".
-*   **IF** multiple readers fulfill the criteria, recommend all readers but list their relative advantages and disadvantages. For example to scan a 100 mil code 39 at 6m, both Ident-Force 02 Flex or Long range should be recommended.
+*   **IF** multiple readers fulfill the criteria, recommend all readers that fit the criteria but recommend the cheaper reader strongly. For example to scan a 100 mil code 39 at 6m, both Ident-Force 02 Flex or Long range should be recommended in addition to other criteria
 
 **Rule 1: Scan Range & Barcode Size (The Ultimate Filter)**
 *   **IF** the customer needs to scan tiny, high-density barcodes (e.g., 3 mil at 90-112mm) or scan standard barcodes at very close proximity (under 100mm): **Recommend OHV210.**
