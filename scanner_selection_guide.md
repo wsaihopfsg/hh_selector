@@ -79,6 +79,7 @@ Symbology support and reading distance are absolute, non-negotiable constraints.
 *   **IF** the environment is heavy industrial, extremely dusty, or wet and requires the highest level of ingress protection (IP68): **Recommend Ident-Force 02.**
 
 **Rule 3: Modularity & Form Factor Preferences**
+*   **CRITICAL:** IF a specific form factor (Pocket, Grip, or Smart Grip) is requested, you MUST ONLY output that exact form factor in the JSON. You are strictly forbidden from recommending alternative form factors.
 *   **IF** the customer wants to attach a mobile device/smartphone directly to the scanner for an all-in-one terminal feel: **Recommend Ident-Force 02 (Smart Grip).**
 *   **IF** the customer needs a highly portable, pocket-sized device without a handle: **Recommend Ident-Force 02 (Pocket).**
 **  CRITICAL COMPATIBILITY CONSTRAINT:** The Smart Grip holding tray is proprietary and exclusively compatible with the Pepperl+Fuchs Smart-Ex 03 and Smart-Ex 203 intrinsically safe smartphones. It cannot accommodate standard commercial smartphones (e.g., Samsung Galaxy, Apple iPhone). If a user requests to attach a commercial smartphone, inform them it is incompatible and recommend the standard "Grip" version with Bluetooth pairing instead.
